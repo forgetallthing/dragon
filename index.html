@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dragon</title>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+<h1>Dragon Go</h1>
+<textarea id="content" class="content"></textarea>
+<button onclick="wocao()">翻译</button>
+<textarea id="res_content" class="content"></textarea>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+<script>if (window.module) module = window.module;</script>
+<script>
+    const ipcRenderer = require('electron').ipcRenderer;
+    const remote = require('electron').remote;
+    const Menu = remote.Menu;
+
+    let menu = new Menu.buildFromTemplate([
+        {
+            label: '菜单',
+            submenu: [
+                {
+                    label: 'Dragon`s egg',
+                    click: function(){
+                        ipcRenderer.send('zqz-show') //注册的指令。send到主进程index.js中。
+                    }
+                }
+            ]
+        }
+    ]);
+
+    Menu.setApplicationMenu(menu);
+
+    function wocao() {
+        let word = $('#content').val();
+        alert(word);
+        ipcRenderer.send('word-message',word);
+    }
+    //监听mian process里发出的message
+    ipcRenderer.on('as',function (event, arg) {
+        alert(arg)
+    })
+</script>
+</body>
+</html>
