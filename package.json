@@ -1,5 +1,11 @@
 {
   "name": "dragon",
   "version": "0.0.1",
-  "main"    : "main.js"
+  "main": "main.js",
+  "scripts": {
+    "packager": "electron-packager . Dragon win64 x86 --out ./Dragons --version 1.6.11 --overwrite --icon=./img/X64.ico --ignore .git"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.2"
+  }
 }

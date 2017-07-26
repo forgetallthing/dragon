@@ -2,46 +2,76 @@
 <html>
 <head>
     <title>Dragon</title>
+    <meta charset="UTF-8">
     <link href="css/index.css" rel="stylesheet" />
+    <link href="css/BeAlert.css" rel="stylesheet" />
+    <link href="css/easydropdown.css" rel="stylesheet" />
+    <link href="css/button.min.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Dragon Go</h1>
-<textarea id="content" class="content"></textarea>
-<button onclick="wocao()">翻译</button>
-<textarea id="res_content" class="content"></textarea>
+<div class="outDiv" id="outDiv">
+    <span class="trans"></span>
+    <div class="row" >
+        <select class="dropdown" id="from">
+            <option value="auto" class="label" >自动检测</option>
+            <option value="auto"  selected>自动检测</option>
+            <option value="zh-CHS"  >中文</option>
+            <option value="en">英文</option>
+            <option value="ja">日文</option>
+            <option value="ko">韩文</option>
+            <option value="fr">法文</option>
+            <option value="pt">葡萄牙文</option>
+            <option value="ru">俄文</option>
+            <option value="es">西班牙文</option>
+        </select>
+        <div class="row1" >
+            <span class="word-limit-con"><span id="wordCurrent">0</span> / 5000</span>
+            <textarea id="content" class="text" dir="ltr" tabindex="1" wrap="SOFT"  placeholder="请输入要翻译的文字"></textarea>
+        </div>
+    </div>
+
+    <div class="row0" >
+        <select class="dropdown" id="to">
+            <option value="auto" class="label" >自动检测</option>
+            <option value="auto"  selected>自动检测</option>
+            <option value="en"  >英文</option>
+            <option value="zh-CHS" >中文</option>
+            <option value="ja">日文</option>
+            <option value="ko">韩文</option>
+            <option value="fr">法文</option>
+            <option value="pt">葡萄牙文</option>
+            <option value="ru">俄文</option>
+            <option value="es">西班牙文</option>
+        </select>
+        <div class="row2" >
+            <textarea id="content2" class="text2 " dir="ltr" tabindex="1" wrap="SOFT" placeholder=""></textarea>
+            <span id="query"></span>
+            <span id="query2"></span>
+        </div>
+    </div>
+    <div class="svg-wrapper shape0"  style="width:416px !important;height: 40px " >
+        <svg height="40"  width="416">
+            <rect id="shape"  height="40" width="416" />
+            <div id="text">
+                <a class="spot1"  ><span class="spot"></span>翻译</a>
+            </div>
+        </svg>
+    </div>
+    <div class="svg-wrapper we"  style="width:416px !important;height: 40px ">
+        <svg height="40" width="416"  >
+            <rect id="shape" height="40" width="416" />
+            <div id="text">
+                <a  class="spot1" ><span class="spot"></span>收藏</a>
+            </div>
+        </svg>
+    </div>
+</div>
+
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 <script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 <script>if (window.module) module = window.module;</script>
-<script>
-    const ipcRenderer = require('electron').ipcRenderer;
-    const remote = require('electron').remote;
-    const Menu = remote.Menu;
-
-    let menu = new Menu.buildFromTemplate([
-        {
-            label: '菜单',
-            submenu: [
-                {
-                    label: 'Dragon`s egg',
-                    click: function(){
-                        ipcRenderer.send('zqz-show') //注册的指令。send到主进程index.js中。
-                    }
-                }
-            ]
-        }
-    ]);
-
-    Menu.setApplicationMenu(menu);
-
-    function wocao() {
-        let word = $('#content').val();
-        alert(word);
-        ipcRenderer.send('word-message',word);
-    }
-    //监听mian process里发出的message
-    ipcRenderer.on('as',function (event, arg) {
-        alert(arg)
-    })
-</script>
+<script src="js/BeAlert.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.easydropdown.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

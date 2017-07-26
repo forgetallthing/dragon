@@ -1,8 +1,128 @@
-.content{
-    border:1px solid #3B5998;
-    width: 300px;
-    height: 200px;
+@font-face {
+    font-family: 'hany';
+    src:url('../font/hany.ttf') format('truetype');
 }
-h1{
-    color: aquamarine;
+@font-face {
+    font-family: 'fz';
+    src:url('../font/fangzheng.ttf') format('truetype');
+}
+
+body,html{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #000;
+    font-family: fz;
+}
+
+*{ margin: 0; padding: 0; }
+.svg-wrapper{
+    margin-top: 53px !important;
+    text-align: center !important;
+    font-size: 18px;
+}
+#query{
+    margin-left: 10px;
+    font-family: hany;
+    font-size: 20px;
+    display: none;
+}
+#query2{
+    margin-left: 10px;
+    font-family: hany;
+    font-size: 20px;
+    display: none;
+}
+.spot1{
+    margin-left:-6% !important;
+}
+.we{
+    float: right;
+    right: 0%;
+}
+textarea{
+    resize: none;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+    outline: none;
+    width:95%;
+    height: 90%;
+    border: 0px solid #ffffff;
+    font-family: hany;
+    font-size: 22px;
+}
+.word-limit-con{
+    position: absolute;
+    bottom: 21px;
+    right: 15px;
+    color: #B3B3B3;
+}
+/*.content{*/
+    /*border:1px solid #3B5998;*/
+    /*width: 300px;*/
+    /*height: 200px;*/
+/*}*/
+
+.outDiv{
+    width: 92%;
+    height: 100%;
+    background: #F8F8F8;
+    padding-left:4% ;
+    padding-right:4% ;
+    background-image: url("../img/wallhaven-531516.jpg");
+    background-repeat: no-repeat;
+    position: relative;
+}
+.dropdown{
+    width:100% !important;
+}
+.trans{
+    height:3vw;
+    width: 3vw;
+    position: absolute;
+    margin-top: 8%;
+    left: 48.7%;
+    display: inline-block;
+    background-image: url("../img/trans.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.text2{
+    height: 40%;
+}
+.row{
+    float: left;
+    width:47%;
+    height: 42%;
+    margin-top: 5%;
+
+}
+.row0{
+    float: right;
+    width:47%;
+    height: 42%;
+    margin-top: 5%;
+
+}
+.row1{
+    width:100%;
+    height: 100%;
+    display: inline-block;
+    margin-right: 0px;
+    padding: 0px;
+    border-radius: 1%;
+    border: solid 1px #B3B3B3;
+    background-color: #FDFDFD;
+    position: relative;
+}
+.row2{
+    width:100%;
+    height: 100%;
+    padding: 0px;
+    display: inline-block;
+    border-radius: 1%;
+    border: solid 1px #B3B3B3;
+    background-color: #FDFDFD;
 }

@@ -4,7 +4,7 @@
 const app = require('electron').app;  // 控制应用生命周期的模块。
 const BrowserWindow = require('electron').BrowserWindow;  // 创建原生浏览器窗口的模块
 const ipcMain = require('electron').ipcMain;
-const http = require('http');
+
 
 // 保持一个对于 window 对象的全局引用，不然，当 JavaScript 被 GC，
 // window 会被自动地关闭
@@ -23,13 +23,22 @@ app.on('window-all-closed', function () {
 // 这个方法就被调用
 app.on('ready', function () {
     // 创建浏览器窗口。
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow = new BrowserWindow({
+        width: 1000,
+        height: 600,
+        autoHideMenuBar:false,
+        icon:"img/logo.png",
+        minWidth:980,
+        minHeight:300,
+        transparent:false,
+        backgroundColor:"#FFFFFF"
+    });
 
     // 加载应用的 index.html
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
     // 打开开发工具
-    mainWindow.openDevTools();
+    // mainWindow.openDevTools();
 
     // 当 window 被关闭，这个事件会被发出
     mainWindow.on('closed', function () {
@@ -41,29 +50,20 @@ app.on('ready', function () {
 
     let presWindow = new BrowserWindow({
         width: 300,
-        height: 300,
+        height: 400,
         show: false
     });
 
     presWindow.loadURL('file://' + __dirname + '/presWindow.html'); //新窗口
 
     ipcMain.on('zqz-show',function(e) {
-        console.log("haha");
-        e.sender.send('as',"you fool");
+        presWindow.show();
+        // e.sender.send('as',"you fool");
     });
 
     ipcMain.on('word-message',function(event, arg) {
         if(arg){
-            var options={
-                hostname:'http://openapi.youdao.com/api?q=good&from=en&to=zh_CHS&appKey=ff889495-4b45-46d9-8f48-946554334f2a&salt=2&sign=1995882C5064805BC30A39829B779D7B',
-                path:'',
-                port:'80',
-                method:'GET'
-            };
-            var  req=http.request('http://openapi.youdao.com/api?q=good&from=en&to=zh_CHS&appKey=ff889495-4b45-46d9-8f48-946554334f2a&salt=2&sign=1995882C5064805BC30A39829B779D7B',function(response){
-                console.log(response);
-            });
-            req.end();
+
         }
 
         console.log(arg)
