@@ -48,22 +48,32 @@ $(function () {
         alert("Dragon eat you hands!", "收藏功能暂未开放!充五块解锁新功能", function () {
         }, {type: 'error', confirmButtonText: '好吧，我不收藏了'});
     });
+    $('#content').keydown(function (e) {
+        if (e.keyCode == 13)
+        {
+            wocao();
+            // window.event.returnValue = false;
+        }
+    });
     $('#content').keyup(
-        function(){
-            let remain = $(this).val().length;
-            if(remain > 5000){
-                alert("Dragon eat you hands!", "字符超过限制!", function () {
-                }, {type: 'error', confirmButtonText: '好吧，我删点'});
-                $('#wordCurrent').text(remain);
-            }else{
-                $('#wordCurrent').text(remain);
-            }
+        function(e){
+                let remain = $(this).val().length;
+                if(remain > 5000){
+                    alert("Dragon eat you hands!", "字符超过限制!", function () {
+                    }, {type: 'error', confirmButtonText: '好吧，我删点'});
+                    $('#wordCurrent').text(remain);
+                }else{
+                    $('#wordCurrent').text(remain);
+                }
+
         }
     );
 });
 
 function wocao() {
     let word = $('#content').val();
+    word = word.replace("\r\n"," ");
+    word = word.replace("\n"," ");
     if(word&&word.length<=5000){
         $('#query').css("display","none");
         $('#query2').css("display","none");
@@ -74,6 +84,9 @@ function wocao() {
         let to = $('#to option:selected').val();
         hash.update(sign);
         sign = hash.digest('hex');
+        console.log(salt);
+        console.log(word);
+        console.log(sign);
         let curUrl =api+ '?q='+word+'&from='+from+'&to='+to+'&appKey='+appKey+'&salt='+salt+'&sign='+sign;
         $.ajax({
             type:"get",
