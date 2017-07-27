@@ -72,8 +72,8 @@ $(function () {
 
 function wocao() {
     let word = $('#content').val();
-    word = word.replace("\r\n"," ");
-    word = word.replace("\n"," ");
+    // word = word.replace("\r\n"," ");
+    word = word.replace(/\n/g," ");
     if(word&&word.length<=5000){
         $('#query').css("display","none");
         $('#query2').css("display","none");
@@ -84,9 +84,6 @@ function wocao() {
         let to = $('#to option:selected').val();
         hash.update(sign);
         sign = hash.digest('hex');
-        console.log(salt);
-        console.log(word);
-        console.log(sign);
         let curUrl =api+ '?q='+word+'&from='+from+'&to='+to+'&appKey='+appKey+'&salt='+salt+'&sign='+sign;
         $.ajax({
             type:"get",
