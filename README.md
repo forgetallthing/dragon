@@ -7,4 +7,6 @@ Dragon1.0截图：
 
 ![hi](https://github.com/forgetallthing/dragon/blob/master/ReadMeImg/906.png)
 
+you foo
+
 
